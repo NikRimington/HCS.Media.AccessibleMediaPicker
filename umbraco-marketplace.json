@@ -1,0 +1,14 @@
+{
+    "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json", 
+    "AuthorDetails": {
+      "Name": "Nik Rimington",
+      "ImageUrl": "https://github.com/NikRimington.png"
+    },
+    "Category": "Editor Tools",
+    "Description": "A media picker with the addition of accessibility related features",
+    "LicenseTypes": [ "Free" ],
+    "IssueTrackerUrl": "https://github.com/NikRimington/HCS.Media.AccessibleMediaPicker/issues",
+    "PackageType": "Package",
+    "Tags": ["Umbraco", "Property Editor", "Accessibility"],
+    "Title": "Accessible Media Picker"
+  }
