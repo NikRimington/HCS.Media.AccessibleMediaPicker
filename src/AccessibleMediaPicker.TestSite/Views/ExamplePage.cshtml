@@ -1,0 +1,52 @@
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.ExamplePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = null;
+}
+
+<h1>@Model.Name</h1>
+<div>
+	<h2>Accessible Media Picker - Single</h2>
+
+	@if(Model.AccessibleMediaPickerSingle != null)
+	{
+		<div>@Model.AccessibleMediaPickerSingle.DefaultAltDescription</div>
+		foreach(var localCrop in Model.AccessibleMediaPickerSingle.CropDescriptions)
+		{
+			<div>@localCrop.Alias : @localCrop.AltDescription</div>
+		}
+		<div>Is Decorative: @Model.AccessibleMediaPickerSingle.IsDecorative</div>
+		<div>Actual Description: @Model.AccessibleMediaPickerSingle.GetDescription();</div>
+	}
+	else
+	{
+		<div>No media selected</div>
+	}
+
+</div>
+
+
+<div>
+	<h2>Accessible Media Picker - Multiple</h2>
+
+	@if (Model.AccessibleMediaPickerMulti != null)
+	{
+		foreach(var accessibleMediaPickerItem in Model.AccessibleMediaPickerMulti)
+		{
+			<h3>@accessibleMediaPickerItem.Name</h3>
+			<div>@accessibleMediaPickerItem.DefaultAltDescription</div>
+			foreach (var localCrop in accessibleMediaPickerItem.CropDescriptions)
+			{
+				<div>@localCrop.Alias : @localCrop.AltDescription</div>
+			}
+			<div>Is Decorative: @accessibleMediaPickerItem.IsDecorative</div>
+			<div>Actual Description: @accessibleMediaPickerItem.GetDescription();</div>
+		}
+	}
+	else
+	{
+		<div>No media selected</div>
+	}
+
+</div>

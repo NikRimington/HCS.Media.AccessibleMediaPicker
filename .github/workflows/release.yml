@@ -17,13 +17,18 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Setup .NET
+    - name: Setup .NET v6
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
+    
+    - name: Setup .NET v8
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 8.0.x
   
     - name: Build project
-      run: dotnet build src\AccessibleMediaPicker\AccessibleMediaPicker.csproj --configuration Release
+      run: dotnet build src\AccessibleMediaPicker\HCS.Media.AccessibleMediaPicker.csproj --configuration Release
 
     - name: Push to NuGet
       run: dotnet nuget push **\*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
