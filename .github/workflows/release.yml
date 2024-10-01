@@ -53,7 +53,7 @@ jobs:
       run: echo "::set-env name=VERSION::$(git describe --tags --dirty)"
     
     - name: Pack
-      run: dotnet pack --output ./artifacts --configuration Release -p:Version=$VERSION
+      run: dotnet pack src\AccessibleMediaPicker\HCS.Media.AccessibleMediaPicker.csproj --output ./artifacts --configuration Release -p:Version=$VERSION
     - uses: actions/upload-artifact@v4
       with:
         name: artifacts
