@@ -1,0 +1,33 @@
+name: Release Package
+
+# This action will start when a correctly formatted tag is pushed (e.g. 0.1.0)
+
+on:
+  push:
+    branches:
+     - workflow/tester
+env:
+  mascot: Mona
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+       
+    - name: Show VERSION 
+      run: echo $GITHUB_REF_NAME
+
+    - name: Show Verion
+      run: echo ${{github.ref_name}}
+
+    - run: echo 'Hi ${{ env.mascot }}'  # Hi Mona
+    - run: echo 'Hi ${{ env.mascot }}'  # Hi Octocat
+        env:
+          mascot: Octocat
+  
