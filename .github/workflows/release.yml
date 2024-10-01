@@ -28,13 +28,13 @@ jobs:
         dotnet-version: 8.0.x
     
     - name: Show VERSION 
-      run: echo "$GITHUB_REF_NAME"
+      run: echo ${{github.ref_name}}
   
     - name: Build project
-      run: dotnet build src\AccessibleMediaPicker\HCS.Media.AccessibleMediaPicker.csproj --configuration Release -p:Version=$GITHUB_REF_NAME
+      run: dotnet build src\AccessibleMediaPicker\HCS.Media.AccessibleMediaPicker.csproj --configuration Release -p:Version=${{github.ref_name}}
     
     - name: Pack
-      run: dotnet pack src\AccessibleMediaPicker\HCS.Media.AccessibleMediaPicker.csproj --output ./artifacts --configuration Release -p:Version=$GITHUB_REF_NAME
+      run: dotnet pack src\AccessibleMediaPicker\HCS.Media.AccessibleMediaPicker.csproj --output ./artifacts --configuration Release -p:Version=${{github.ref_name}}
     - uses: actions/upload-artifact@v4
       with:
         name: artifacts
