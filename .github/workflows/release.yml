@@ -5,34 +5,34 @@ name: Release Package
 on:
   push:
     tags:
-      - "[0-9]+.[0-9]+.[0-9]+*"
+      - "v[0-9]+.[0-9]+.[0-9]+*"
 
 jobs:
-  build:
+  # build:
 
-    runs-on: windows-latest
+  #   runs-on: windows-latest
 
-    steps:
+  #   steps:
 
-    - name: Checkout repository
-      uses: actions/checkout@v3
+  #   - name: Checkout repository
+  #     uses: actions/checkout@v3
 
-    - name: Setup .NET v6
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 6.0.x
+  #   - name: Setup .NET v6
+  #     uses: actions/setup-dotnet@v2
+  #     with:
+  #       dotnet-version: 6.0.x
     
-    - name: Setup .NET v8
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: 8.0.x
+  #   - name: Setup .NET v8
+  #     uses: actions/setup-dotnet@v2
+  #     with:
+  #       dotnet-version: 8.0.x
   
-    - name: Build project
-      run: dotnet build src\AccessibleMediaPicker\HCS.Media.AccessibleMediaPicker.csproj --configuration Release
+  #   - name: Build project
+  #     run: dotnet build src\AccessibleMediaPicker\HCS.Media.AccessibleMediaPicker.csproj --configuration Release
       
   pack:
     runs-on: windows-latest
-    needs: build
+    #needs: build
     if: github.event_name == 'push'
     steps:
 
@@ -49,8 +49,11 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
-    - name: Determine version
-      run: echo "::set-env name=VERSION::$(git describe --tags --dirty)"
+    - name: Set VERSION variable from tag
+      run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+
+    - name: Show VERSION 
+      run: echo "${VERSION}"
     
     - name: Pack
       run: dotnet pack src\AccessibleMediaPicker\HCS.Media.AccessibleMediaPicker.csproj --output ./artifacts --configuration Release -p:Version=$VERSION
