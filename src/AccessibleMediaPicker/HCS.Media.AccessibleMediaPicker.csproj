@@ -4,11 +4,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <StaticWebAssetBasePath>App_Plugins</StaticWebAssetBasePath>
+    <StaticWebAssetsEnabled>true</StaticWebAssetsEnabled>
     <ContentTargetFolders>.</ContentTargetFolders>
     <Product>HCS.Media.AccessibleMediaPicker</Product>
     <PackageId>HCS.Media.AccessibleMediaPicker</PackageId>
     <Title>Accessible Media Picker</Title>
-    <Description>...</Description>
+    <Description>Enhanced Media Picker for Umbraco with added description fields</Description>
     <PackageTags>umbraco;umbraco-marketplace</PackageTags>
     <RootNamespace>HCS.Media.AccessibleMediaPicker</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
@@ -20,6 +21,7 @@
     <PackageReadmeFile>README_nuget.md</PackageReadmeFile>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>logo.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,10 +30,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\docs\README_nuget.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+      <None Include="..\..\docs\README_nuget.md">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+      <None Include="../../docs/img/logo.png" Pack="true" PackPath="\" />
+      <None Include="../../LICENSE" Pack="true" PackPath="" />
+    </ItemGroup>
 
 </Project>
