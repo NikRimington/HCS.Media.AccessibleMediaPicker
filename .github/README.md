@@ -1,6 +1,6 @@
 # AccessibleMediaPicker
 
-![Logo](https://raw.githubusercontent.com/NikRimington/HCS.Media.AccessibleMediaPicker/develop/docs/img/logo.png)
+<img src="https://raw.githubusercontent.com/NikRimington/HCS.Media.AccessibleMediaPicker/develop/docs/img/icon.svg" alt="Accessible Media Picker Logo" width="250" align="right" />
 
 [![Downloads](https://img.shields.io/nuget/dt/HCS.Media.AccessibleMediaPicker?color=cc9900)](https://www.nuget.org/packages/HCS.Media.AccessibleMediaPicker/)
 [![NuGet](https://img.shields.io/nuget/vpre/HCS.Media.AccessibleMediaPicker?color=0273B3)](https://www.nuget.org/packages/HCS.Media.AccessibleMediaPicker)
