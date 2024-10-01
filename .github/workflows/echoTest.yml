@@ -28,6 +28,6 @@ jobs:
 
     - run: echo 'Hi ${{ env.mascot }}'  # Hi Mona
     - run: echo 'Hi ${{ env.mascot }}'  # Hi Octocat
-        env:
-          mascot: Octocat
+      env:
+        mascot: Octocat
   
