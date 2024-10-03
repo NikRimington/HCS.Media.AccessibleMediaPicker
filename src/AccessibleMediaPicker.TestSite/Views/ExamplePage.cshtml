@@ -17,7 +17,8 @@
 			<div>@localCrop.Alias : @localCrop.AltDescription</div>
 		}
 		<div>Is Decorative: @Model.AccessibleMediaPickerSingle.IsDecorative</div>
-		<div>Actual Description: @Model.AccessibleMediaPickerSingle.GetDescription();</div>
+		<div>Actual Description: @Model.AccessibleMediaPickerSingle.GetDescription()</div>
+		<div>Specific Crop Description: @Model.AccessibleMediaPickerSingle.GetDescription("localCrop")</div>
 	}
 	else
 	{

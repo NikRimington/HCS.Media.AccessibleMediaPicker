@@ -1,5 +1,5 @@
 <div
-  class="umb-media-entry-editor"
+  class="umb-media-entry-editor --acmp"
   ng-controller="HCS.AccessibleMediaEntryEditorController as vm"
 >
   <ng-form name="vm.imageCropperForm" val-form-manager>
@@ -77,7 +77,6 @@
               </umb-image-crop>
 
             </div>
-
             <div ng-if="!vm.currentCrop" class="umb-cropper-imageholder">
               <umb-image-gravity class="umb-media-entry-editor__imageholder"
                                  ng-if="vm.imageSrc"

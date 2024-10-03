@@ -23,7 +23,7 @@ internal class AccessibleMediaPickerManifestFilter : IManifestFilter
             {
                 // List any Stylesheet files
                 // Urls should start '/App_Plugins/AccessibleMediaPicker/' not '/wwwroot/AccessibleMediaPicker/', e.g.
-                // "/App_Plugins/AccessibleMediaPicker/Styles/styles.css"
+                "/App_Plugins/HCS.Media/AccessibleMediaEntryEditor/styles.css"
             }
         });
     }
