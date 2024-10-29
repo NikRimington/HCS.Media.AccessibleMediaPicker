@@ -15,21 +15,17 @@ using Newtonsoft.Json;
 
 namespace HCS.Media.AccessibleMediaPicker.PropertyEditor;
 
+// TODO: Check this file
+
 /// <summary>
 ///     Represents a media picker property editor.
 /// </summary>
 [DataEditor(
     Constants.EditorAlias,
-    EditorType.PropertyValue,
-    "Accessible Media Picker",
-    "/App_Plugins/HCS.Media/AccessibleMediaPicker/editor.html",
     ValueType = ValueTypes.Json,
-    Group = PropertyEditors.Groups.Media,
-    Icon = Icons.MediaImage,
     ValueEditorIsReusable = true)]
 public class AccessibleMediaPickerPropertyEditor : DataEditor
 {
-    private readonly IEditorConfigurationParser _editorConfigurationParser;
     private readonly IIOHelper _ioHelper;
 
     /// <summary>
@@ -37,13 +33,10 @@ public class AccessibleMediaPickerPropertyEditor : DataEditor
     /// </summary>
     public AccessibleMediaPickerPropertyEditor(
         IDataValueEditorFactory dataValueEditorFactory,
-        IIOHelper ioHelper,
-        IEditorConfigurationParser editorConfigurationParser,
-        EditorType type = EditorType.PropertyValue)
-        : base(dataValueEditorFactory, type)
+        IIOHelper ioHelper)
+        : base(dataValueEditorFactory)
     {
         _ioHelper = ioHelper;
-        _editorConfigurationParser = editorConfigurationParser;
         SupportsReadOnly = true;
     }
 
@@ -51,7 +44,7 @@ public class AccessibleMediaPickerPropertyEditor : DataEditor
 
     /// <inheritdoc />
     protected override IConfigurationEditor CreateConfigurationEditor() =>
-        new MediaPicker3ConfigurationEditor(_ioHelper, _editorConfigurationParser);
+        new MediaPicker3ConfigurationEditor(_ioHelper);
 
     /// <inheritdoc />
     protected override IDataValueEditor CreateValueEditor() =>
@@ -93,14 +86,14 @@ public class AccessibleMediaPickerPropertyEditor : DataEditor
             }
         }
 
-        public override object ToEditor(IProperty property, string? culture = null, string? segment = null)
+        public override async Task<object> ToEditor(IProperty property, string? culture = null, string? segment = null)
         {
             var value = property.GetValue(culture, segment);
 
             var dtos = Deserialize(_jsonSerializer, value).ToList();
 
-            IDataType? dataType = _dataTypeService.GetDataType(property.PropertyType.DataTypeId);
-            if (dataType?.Configuration != null)
+            IDataType? dataType = await _dataTypeService.GetAsync(property.PropertyType.DataTypeKey);
+            if (dataType?.ConfigurationObject != null)
             {
                 MediaPicker3Configuration? configuration = dataType.ConfigurationAs<MediaPicker3Configuration>();
 
@@ -200,10 +193,8 @@ public class AccessibleMediaPickerPropertyEditor : DataEditor
                 {
                     continue;
                 }
-
-                GuidUdi? startNodeGuid = mediaPicker3Configuration.StartNodeId as GuidUdi ?? null;
                 JToken? mediaTypeAlias = dto.GetValue("mediaTypeAlias");
-                IMedia mediaFile = _temporaryMediaService.Save(temporaryLocationString, startNodeGuid?.Guid, mediaTypeAlias?.Value<string>());
+                IMedia mediaFile = _temporaryMediaService.Save(temporaryLocationString, mediaPicker3Configuration.StartNodeId, mediaTypeAlias?.Value<string>());
                 AccessibleMediaWithCropsDto? mediaDto = _jsonSerializer.Deserialize<AccessibleMediaWithCropsDto>(dto.ToString());
                 if (mediaDto is null)
                 {
@@ -249,7 +240,11 @@ public class AccessibleMediaPickerPropertyEditor : DataEditor
             ///     Because the DTO uses the same JSON keys as the image cropper value for crops and focal point, we can re-use the
             ///     prune method.
             /// </remarks>
-            public static void Prune(JObject? value) => ImageCropperValue.Prune(value);
+            public static void Prune(JObject? value)
+            {
+                // TODO: cannot access internal method Prune
+                //ImageCropperValue.Prune(value)
+            }
 
             /// <summary>
             ///     Applies the configuration to ensure only valid crops are kept and have the correct width/height.

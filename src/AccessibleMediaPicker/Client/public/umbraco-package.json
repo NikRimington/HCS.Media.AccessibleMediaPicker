@@ -1,0 +1,12 @@
+{
+  "name": "HCS.Media.AccessibleMediaPicker",
+  "version": "2.0.0",
+  "extensions": [
+    {
+      "type": "entryPoint",
+      "alias": "HCS.Media.AccessibleMediaPicker.EntryPoint",
+      "name": "AccessibleMediaPicker Entry Point",
+      "js": "/App_Plugins/HCS.Media.AccessibleMediaPicker/hcs-accessible-media-picker.js"
+    }
+  ]
+}
