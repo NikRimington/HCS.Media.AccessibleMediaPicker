@@ -6,7 +6,7 @@
       "type": "entryPoint",
       "alias": "HCS.Media.AccessibleMediaPicker.EntryPoint",
       "name": "AccessibleMediaPicker Entry Point",
-      "js": "/App_Plugins/HCS.Media.AccessibleMediaPicker/dist/hcs-accessible-media-picker.js"
+      "js": "/App_Plugins/HCS.Media.AccessibleMediaPicker/hcs-accessible-media-picker.js"
     }
   ]
 }

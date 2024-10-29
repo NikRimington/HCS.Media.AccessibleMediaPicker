@@ -33,9 +33,4 @@
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\App_Plugins\" />
-  </ItemGroup>
-
 </Project>
